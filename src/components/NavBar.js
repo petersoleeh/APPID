@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect } from 'react'
 
 
 import { Link } from 'react-router-dom'
@@ -21,6 +21,11 @@ function NavBar() {
         }
     }
 
+    useEffect(() => {
+        showButton()
+    }, [])
+    
+
     window.addEventListener('resize', showButton)
 
     return (
@@ -28,7 +33,7 @@ function NavBar() {
             <nav className='navbar'>
                 <div className='navbar-container'>
                     <Link to='/' className='navbar-logo' onClick={closeMenu}>
-                        ICIPE  <i class="fab fa-forumbee" />
+                        ICIPE  <i className="fab fa-forumbee" />
                     </Link> 
                     <div className='menu-icon' onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

@@ -2,68 +2,69 @@ import React from "react";
 
 import "./App.css";
 
-// import Home from './components/pages/Home'
+import Home from './components/pages/Home'
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { Container, Grid, Paper, Typography } from "@material-ui/core";
+// import { Container, Grid, Paper, Typography } from "@material-ui/core";
 
 import NavBar from "./components/NavBar";
 
 import SearchBar from "./components/SearchBar";
 
-import SearchResults from "./components/SearchResults";
+import ObservationDetail from './components/ObservationDetail'
 
-import ObservationList from "./components/ObservationList";
+// import SearchResults from "./components/SearchResults";
 
-import GbifResults from "./components/GbifResults";
+// import ObservationList from "./components/ObservationList";
 
-import MapGbifData from "./components/MapData";
+// import GbifResults from "./components/GbifResults";
 
-import gbif from "./api/gbif";
-import gbif2 from "./api/gbif2";
-import { Component, Fragment } from "react";
+// import MapGbifData from "./components/MapData";
+
+// import gbif from "./api/gbif";
+// import gbif2 from "./api/gbif2";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
 
-    this.state = {
-      bees: [],
-      selectedBees: null,
-      gbifData: [],
-      loading: false,
-      MapData: []
-    };
-  }
+  //   this.state = {
+  //     bees: [],
+  //     selectedBees: null,
+  //     gbifData: [],
+  //     loading: false,
+  //     MapData: []
+  //   };
+  // }
 
-  handleSubmit = async (searchTerm) => {
-    const response = await gbif.get("search", {
-      params: {
-        q: searchTerm,
-      },
-    });
+  // handleSubmit = async (searchTerm) => {
+  //   const response = await gbif.get("search", {
+  //     params: {
+  //       q: searchTerm,
+  //     },
+  //   });
     // console.log(response.data);
 
-    this.setState({
-      bees: response.data.results,
-      selectedBees: response.data.results[0],
-    });
-  };
+  //   this.setState({
+  //     bees: response.data.results,
+  //     selectedBees: response.data.results[0],
+  //   });
+  // };
 
-  async componentDidMount() {
-    await gbif2.get("search", {
-      params: {
-        limit: 6
-      }
-    }).then((res) => {
-      this.setState({
-        gbifData: res.data,
-        MapData: res.data,
-        loading: true,
-      });
-    });
-  }
+  // async componentDidMount() {
+  //   await gbif2.get("search", {
+  //     params: {
+  //       limit: 6
+  //     }
+  //   }).then((res) => {
+  //     this.setState({
+  //       gbifData: res.data,
+  //       MapData: res.data,
+  //       loading: true,
+  //     });
+  //   });
+  // }
 
 
 
@@ -71,9 +72,9 @@ class App extends React.Component {
 
 
   render() {
-    const { selectedBees, bees } = this.state;
-    const { gbifData, loading } = this.state;
-    const { MapData } = this.state;
+    // const { selectedBees, bees } = this.state;
+    // const { gbifData, loading } = this.state;
+    // const { MapData } = this.state;
 
     return (
       // <React.Fragment>
@@ -107,10 +108,11 @@ class App extends React.Component {
         <Router>
           <NavBar />
           <Switch>
-            <Route path="/" exact />
+            <Route path="/" exact component={Home}/>
+            {/* <Route path="/observations" exact component={Observations}/> */}
+            <Route path='/observations/:id' component={ObservationDetail} />
           </Switch>
-          <></>
-          <Container style={{ marginTop: "30px" }}>
+          {/* <Container style={{ marginTop: "30px" }}>
             <Paper style={{ backgroundColor: "#cfe8fc", height: "60vh" }}>
               here
             </Paper>
@@ -126,7 +128,13 @@ class App extends React.Component {
             <Grid item xs={12} style={{ marginTop: "50px"}}>
               <MapGbifData MapData={MapData} loading={loading}/>
             </Grid>
-          </Container>
+            <Grid item xs={12} style={{ marginTop: "50px"}}>
+              <Typography variant="h4">Partners </Typography>
+            </Grid>
+            <Grid item xs={12} style={{ marginTop: "50px"}}> */}
+              {/* <MapGbifData MapData={MapData} loading={loading}/> */}
+            {/* </Grid>
+          </Container> */}
         </Router>
       </React.Fragment>
     );

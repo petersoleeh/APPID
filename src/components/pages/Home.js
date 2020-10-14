@@ -1,6 +1,5 @@
 import React from "react";
 
-
 import gbif from "./../../api/gbif";
 import gbif2 from "./../../api/gbif2";
 
@@ -9,6 +8,7 @@ import GbifResults from "./../../components/GbifResults";
 import MapGbifData from "./../../components/MapData";
 import { Container, Grid, Paper, Typography } from "@material-ui/core";
 
+import { Link } from "react-router-dom";
 
 import "../../App.css";
 import SearchResults from "../SearchResults";
@@ -29,9 +29,9 @@ class Home extends React.Component {
   async componentDidMount() {
     await gbif2
       .get("search", {
-        params: {
-          limit: 6,
-        },
+        // params: {
+        //   limit: 20,
+        // },
       })
       .then((res) => {
         this.setState({
@@ -39,6 +39,9 @@ class Home extends React.Component {
           MapData: res.data,
           loading: true,
         });
+      })
+      .catch((error) => {
+        console.log("Error getting data from GBIF :", error);
       });
   }
 
@@ -51,10 +54,19 @@ class Home extends React.Component {
       <React.Fragment>
         <Container style={{ marginTop: "30px" }}>
           <Paper style={{ backgroundColor: "#cfe8fc", height: "60vh" }}>
-            here
+            Portal description: Coming Soon
           </Paper>
-          <Grid item xs={12} style={{ marginTop: "50px" }}>
-            <Typography variant="h4">Recent Observations</Typography>
+          <Grid container item xs={12} style={{ marginTop: "50px" }}>
+            <Grid item xs={6}>
+              <Typography variant="h4">Recent Observations</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Link to={`/observations`} className="view-link">
+                <Typography variant="h5" className="view-all">
+                  View all observations
+                </Typography>
+              </Link>
+            </Grid>
           </Grid>
           <Grid item xs={12} style={{ marginTop: "50px" }}>
             <GbifResults gbifData={gbifData} loading={loading} />
@@ -69,7 +81,7 @@ class Home extends React.Component {
             <Typography variant="h4">Partners </Typography>
           </Grid>
           <Grid item xs={12} style={{ marginTop: "50px" }}>
-            {/* <Partners MapData={MapData} loading={loading}/> */}
+            {/* <Partners Partners={Partners} /> */}
           </Grid>
         </Container>
       </React.Fragment>

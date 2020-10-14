@@ -13,6 +13,7 @@ import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
 
 import ObservationDetail from './components/ObservationDetail'
+import ObservationList from './components/ObservationList'
 
 // import SearchResults from "./components/SearchResults";
 
@@ -109,7 +110,7 @@ class App extends React.Component {
           <NavBar />
           <Switch>
             <Route path="/" exact component={Home}/>
-            {/* <Route path="/observations" exact component={Observations}/> */}
+            <Route path="/observations" exact component={ObservationList} />
             <Route path='/observations/:id' component={ObservationDetail} />
           </Switch>
           {/* <Container style={{ marginTop: "30px" }}>

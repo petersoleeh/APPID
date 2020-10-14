@@ -30,12 +30,11 @@ const GbifResults = ({ gbifData, loading }) => {
     );
   } else {
     // console.log(gbifData);
-
     return (
       <React.Fragment>
         <Container maxWidth="lg">
           <Grid container spacing={3}>
-            {gbifData.results.map((data) => (
+            {gbifData.results.slice(0, 6).map((data) => (
               <Grid item key={data.key} xs={12} sm={6} md={2}>
                 <Link to={`/observations/${data.key}`}>
                   <Card>
@@ -44,13 +43,26 @@ const GbifResults = ({ gbifData, loading }) => {
                         component="img"
                         alt={data.genericName}
                         height="150"
-                        image={data.media[0].identifier}
+                        // image={data.media.map(img => {
+                        //   if (Array.length===0) {
+                        //     return(`https://images.unsplash.com/photo-1427847907429-d1ba99bf013d`)
+                        //   }else{
+                        //     return(
+                        //       img.identifier
+                        //     )
+                        //   }
+                        // })}
+                        image={data.media.map((img) => {
+                          return img.length === 0
+                            ? "https://images.unsplash.com/photo-1427847907429-d1ba99bf013d"
+                            : img.identifier;
+                        })}
                         title={data.genericName}
                       />
-                      <CardContent>
-                        {/* <Typography gutterBottom variant="h5" component="h2">
+                      {/* <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
                             {data.acceptedScientificName}
-                          </Typography> */}
+                          </Typography>
                         <Typography
                           variant="body2"
                           color="textSecondary"
@@ -58,7 +70,7 @@ const GbifResults = ({ gbifData, loading }) => {
                         >
                           Recorded By: {data.recordedBy}
                         </Typography>
-                      </CardContent>
+                      </CardContent> */}
                     </CardActionArea>
                   </Card>
                 </Link>

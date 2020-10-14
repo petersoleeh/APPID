@@ -3,6 +3,7 @@ import React from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { Link } from "react-router-dom";
 
 import Skeleton from "@material-ui/lab/Skeleton";
 
@@ -47,12 +48,14 @@ const MapGbifData = ({ MapData, loading }) => {
               position={[data.decimalLatitude, data.decimalLongitude]}
             >
               <Popup>
-                <img
-                  src={data.media[0].identifier}
-                  width="150"
-                  height="150"
-                  alt={data.genericName}
-                />
+                <Link to={`/observations/${data.key}`}>
+                  <img
+                    src={data.media.map((img) => img.identifier)}
+                    width="150"
+                    height="150"
+                    alt={data.genericName}
+                  />
+                </Link>
               </Popup>
             </Marker>
           ))}

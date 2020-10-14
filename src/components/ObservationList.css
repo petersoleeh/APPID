@@ -1,0 +1,107 @@
+.photo-card {
+  display: grid;
+  grid-template-columns: 50% min-content 1fr max-content;
+  grid-template-rows: min-content 1fr min-content;
+  grid-gap: 0.75rem;
+  grid-template-areas:
+    "photo avatar author date"
+    "photo . description description"
+    "photo . . like";
+  background: #fff;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  padding-right: 0.75rem;
+  margin-bottom: 1.75rem;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.photo {
+  grid-area: photo;
+}
+
+.img-list {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.author {
+  grid-area: author;
+  margin: 0;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.description {
+  grid-area: description;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.date {
+  grid-area: date;
+  color: #767676;
+  font-size: small;
+}
+
+.fa-map-marker-alt {
+  margin-left: 0.5rem;
+  font-size: 1.25rem;
+  color: #000000;
+}
+
+.like {
+  grid-area: like;
+  padding-bottom: 0.75rem;
+  text-align: right;
+}
+
+.author,
+.date {
+  display: flex;
+  align-self: center;
+}
+
+.avatar,
+.author,
+.date {
+  padding-top: 0.75rem;
+}
+
+/* Re-configure card layout for smaller screens */
+@media (max-width: 640px) {
+  .photo-card {
+    grid-template-columns: min-content 1fr 1fr;
+    grid-template-areas:
+      "avatar author author"
+      "photo photo photo"
+      "description description description"
+      "date date like";
+    padding: 0.75rem 0;
+  }
+
+  .avatar,
+  .author,
+  .date,
+  .like {
+    padding: 0;
+  }
+
+  .avatar img {
+    width: 42px;
+  }
+
+  .avatar,
+  .date {
+    padding-left: 0.75rem;
+  }
+
+  .like {
+    padding-right: 0.75rem;
+  }
+
+  .description {
+    padding: 0 0.75rem;
+  }
+}

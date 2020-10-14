@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import ImageViewer from "react-simple-image-viewer";
+import Moment from "react-moment";
+import Skeleton from "@material-ui/lab/Skeleton";
+import Box from "@material-ui/core/Box";
 
 import {
   Grid,
@@ -31,79 +32,93 @@ function ObservationDetail({ match }) {
 
   const [item, setItem] = useState();
 
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isviewerOpen, setIsViewerOpen] = useState(false);
-
-  const openImageViewer = useCallback((index) => {
-    setCurrentImage(index);
-    setIsViewerOpen(true);
-  }, []);
-
-  const closeImageViewer = () => {
-    setCurrentImage(0);
-    setIsViewerOpen(false);
-  };
-
   useEffect(() => {
     axios
       .get(`https://api.gbif.org/v1/occurrence/${match.params.id}`)
       .then((res) => {
         setItem(res.data);
         setLoading(false);
+      })
+      .catch((err) => {
+        console.log("Error getting data from GBIF: " + err);
       });
   }, []);
 
-  const images = [
-    "http://placeimg.com/1200/800/nature",
-    "http://placeimg.com/800/1200/nature",
-    "http://placeimg.com/1920/1080/nature",
-    "http://placeimg.com/1500/500/nature",
-  ];
-
   if (isLoading) {
-    return <div>Loading..</div>;
+    return (
+      <React.Fragment>
+        <Container>
+          <Grid container spacing={3} style={{ marginTop: "30px" }}>
+            <Grid item xs={12} sm={6} md={7}>
+              <span>
+                <Box pt={0.5}>
+                  <Skeleton
+                    animation="wave"
+                    variant="rect"
+                    width={"100%"}
+                    height={500}
+                  />
+                  <Skeleton width="80%" />
+                  <Skeleton width="60%" />
+                  <Skeleton width="40%" />
+                </Box>
+              </span>
+            </Grid>
+            <Grid item xs={12} sm={6} md={5}>
+              <Box pt={0.5}>
+                <Skeleton
+                  animation="wave"
+                  variant="rect"
+                  width={"100%"}
+                  height={"500px"}
+                />
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
+      </React.Fragment>
+    );
   } else {
     return (
       <React.Fragment>
         {console.log(item)}
-
         <Container>
-          <Grid container spacing={3} style={{ marginTop: "20px" }}>
-            <Grid item key={item.id} xs={9}>
-              <Paper>
-                <Typography
-                  variant="h3"
-                  align="center"
-                  style={{ fontStyle: "italic" }}
-                >
-                  {item.acceptedScientificName}
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={3}></Grid>
+          <Grid container spacing={3} style={{ marginTop: "30px" }}>
             <Grid item key={item.id} xs={12} sm={6} md={7}>
-              {/* {item.media.map((src,index) =>(
-                     <img 
-                        src={src}
-                        onLoad = {() => openImageViewer(index)}
-                        width='100px'
-                        key={index}
-                        style={{margin: '2px'}}
-                        alt={item.genericName}                     
-                     />
-                 ))}
-                 {isviewerOpen && (
-                     <ImageViewer
-                       src={item.media.map((img)=>{ console.log(img.identifier) })}
-                       currentIndex={currentImage}
-                       onClose= {closeImageViewer}
-                     />
-                 )}                 */}
+              <Card>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    alt={item.genericName}
+                    height="500"
+                    image={item.media.map((img) => {
+                      return img.length === 0
+                        ? "https://images.unsplash.com/photo-1427847907429-d1ba99bf013d"
+                        : img.identifier;
+                    })}
+                    title={item.genericName}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {item.acceptedScientificName}
+                    </Typography>
+                    <Typography color="textSecondary">
+                      Observer: {item.identifiedBy}
+                    </Typography>
+                    <Typography color="textSecondary">
+                      Location: {item.verbatimLocality}
+                    </Typography>
+                    <Typography color="textSecondary">
+                      Date: <Moment>{item.eventDate}</Moment>
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
             </Grid>
             <Grid item key={item.key} xs={12} sm={6} md={5}>
               <Map
                 center={[item.decimalLatitude, item.decimalLongitude]}
-                zoom={9}
+                zoom={13}
                 style={{ width: "100%", height: "500px" }}
               >
                 <TileLayer

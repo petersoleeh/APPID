@@ -52,11 +52,16 @@ body {
   font-size: medium !important;
   display: flex;
   float: right;
-  text-decoration: underline;
   padding-top: 0.5rem;
 }
 
-.view-link {
-  text-decoration: underline;
+.view-link  {
+ 
   color: black !important;
+}
+
+.view-all:hover {
+
+  text-decoration: underline;
+
 }

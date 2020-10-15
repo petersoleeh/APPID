@@ -2,6 +2,7 @@ import React from "react";
 
 import gbif from "./../../api/gbif";
 import gbif2 from "./../../api/gbif2";
+import Partners from './../Partners'
 
 import GbifResults from "./../../components/GbifResults";
 
@@ -81,7 +82,13 @@ class Home extends React.Component {
             <Typography variant="h4">Partners </Typography>
           </Grid>
           <Grid item xs={12} style={{ marginTop: "50px" }}>
-            {/* <Partners Partners={Partners} /> */}
+            <Partners Partners={Partners} />
+          </Grid>
+          <Grid item xs={12} style={{ marginTop: "50px" }}>
+            <Typography variant="h4">Footer </Typography>
+          </Grid>
+          <Grid item xs={12} style={{ marginTop: "50px" }}>
+            {/* <Footer Footer={Footer} /> */}
           </Grid>
         </Container>
       </React.Fragment>

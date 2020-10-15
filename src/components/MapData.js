@@ -6,6 +6,7 @@ import L from "leaflet";
 import { Link } from "react-router-dom";
 
 import Skeleton from "@material-ui/lab/Skeleton";
+import Box from "@material-ui/core/Box";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -18,16 +19,16 @@ L.Icon.Default.mergeOptions({
 const MapGbifData = ({ MapData, loading }) => {
   if (!loading) {
     return (
-      <div>
-        <span>
+      <React.Fragment>
+        <Map>
           <Skeleton
             animation="wave"
             variant="rect"
             width={"100%"}
             height={"600px"}
           />
-        </span>
-      </div>
+        </Map>
+      </React.Fragment>
     );
   } else {
     return (

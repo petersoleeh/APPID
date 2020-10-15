@@ -133,7 +133,7 @@ class ObservationList extends React.Component {
         </React.Fragment>
       );
     } else {
-      console.log(gbifData);
+      console.log(gbifData.results[0].eventDate);
       return (
         <React.Fragment>
           <Container style={{ marginTop: "30px" }}>

@@ -83,7 +83,7 @@ function ObservationDetail({ match }) {
       <React.Fragment>
         {console.log(item)}
         <Container>
-          <Grid container spacing={3} style={{ marginTop: "30px" }}>
+          <Grid container spacing={3} style={{ marginTop: "30px" , marginBottom:'150px'}}>
             <Grid item key={item.id} xs={12} sm={6} md={7}>
               <Card>
                 <CardActionArea>

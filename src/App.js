@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import { Container, Grid, Paper, Typography } from "@material-ui/core";
 
 import NavBar from "./components/NavBar";
+import Footer from './components/pages/Footer'
 
 import SearchBar from "./components/SearchBar";
 
@@ -108,6 +109,7 @@ class App extends React.Component {
       <React.Fragment>
         <Router>
           <NavBar />
+          {/* <Footer /> */}
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/observations" exact component={ObservationList} />
@@ -136,6 +138,8 @@ class App extends React.Component {
               {/* <MapGbifData MapData={MapData} loading={loading}/> */}
             {/* </Grid>
           </Container> */}
+          <Footer />
+
         </Router>
       </React.Fragment>
     );

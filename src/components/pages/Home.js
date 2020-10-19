@@ -5,6 +5,7 @@ import gbif2 from "./../../api/gbif2";
 import Partners from './../Partners'
 
 import GbifResults from "./../../components/GbifResults";
+import Footer from './Footer'
 
 import MapGbifData from "./../../components/MapData";
 import { Container, Grid, Paper, Typography } from "@material-ui/core";
@@ -81,14 +82,14 @@ class Home extends React.Component {
           <Grid item xs={12} style={{ marginTop: "50px" }}>
             <Typography variant="h4">Partners </Typography>
           </Grid>
-          <Grid item xs={12} style={{ marginTop: "50px" }}>
+          <Grid item xs={12} style={{ marginTop: "80px", marginBottom: "150px" }}>
             <Partners Partners={Partners} />
           </Grid>
           <Grid item xs={12} style={{ marginTop: "50px" }}>
-            <Typography variant="h4">Footer </Typography>
+            {/* <Typography variant="h4">Footer </Typography> */}
           </Grid>
           <Grid item xs={12} style={{ marginTop: "50px" }}>
-            {/* <Footer Footer={Footer} /> */}
+            {/* <Footer /> */}
           </Grid>
         </Container>
       </React.Fragment>

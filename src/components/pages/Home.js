@@ -2,13 +2,20 @@ import React from "react";
 
 import gbif from "./../../api/gbif";
 import gbif2 from "./../../api/gbif2";
-import Partners from './../Partners'
+import Partners from "./../Partners";
 
 import GbifResults from "./../../components/GbifResults";
-import Footer from './Footer'
+import Footer from "./Footer";
 
 import MapGbifData from "./../../components/MapData";
 import { Container, Grid, Paper, Typography } from "@material-ui/core";
+import SimpleSlider from "./../SimpleSlider";
+
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+} from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
@@ -55,10 +62,30 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Container style={{ marginTop: "30px" }}>
-          <Paper style={{ backgroundColor: "#cfe8fc", height: "60vh" }}>
-            Portal description: Coming Soon
-          </Paper>
-          <Grid container item xs={12} style={{ marginTop: "50px" }}>
+          <Grid container style={{ height: "60vh" }}>
+            <Grid item xs={12} sm={8} md={7}>
+              <SimpleSlider />
+            </Grid>
+            <Grid item xs={12} sm={4} md={5} style={{paddingTop: '50px', alignContent:'center'}} >
+            <Card>
+                <CardActionArea>
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2" align='center'>
+                      Site Description
+                    </Typography>
+                    <Typography color="textSecondary" align='center'>
+                    {/* A unique repository of information on bees' interactions. 
+                    The Portal aims to aggregate data through public participation
+                     and provide open and free access to biodiversity information. 
+                     We welcome your participation and feedback. */}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          </Grid>
+
+          <Grid container item xs={12} style={{ marginTop: "150px" }}>
             <Grid item xs={6}>
               <Typography variant="h4">Recent Observations</Typography>
             </Grid>
@@ -82,7 +109,11 @@ class Home extends React.Component {
           <Grid item xs={12} style={{ marginTop: "50px" }}>
             <Typography variant="h4">Partners </Typography>
           </Grid>
-          <Grid item xs={12} style={{ marginTop: "80px", marginBottom: "150px" }}>
+          <Grid
+            item
+            xs={12}
+            style={{ marginTop: "80px", marginBottom: "150px" }}
+          >
             <Partners Partners={Partners} />
           </Grid>
           <Grid item xs={12} style={{ marginTop: "50px" }}>

@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import axios from "axios";
+import Skeleton from "@material-ui/lab/Skeleton";
+import Box from "@material-ui/core/Box";
+import { Link } from "react-router-dom";
 
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-
-import Skeleton from "@material-ui/lab/Skeleton";
-import Box from "@material-ui/core/Box";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -15,8 +17,26 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
-const MapGbifData = ({ MapData, loading }) => {
-  if (!loading) {
+function FullMap() {
+  const [isLoading, setisLoading] = useState(true);
+
+  const [MapData, setMapData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.gbif.org/v1/occurrence/search?taxonKey=7799978&country=KE`
+      )
+      .then((res) => {
+        setMapData(res.data);
+        setisLoading(false);
+      })
+      .catch((err) => {
+        console.log("Error getting data from GBIF: " + err);
+      });
+  }, []);
+
+  if (isLoading) {
     return (
       <React.Fragment>
         <Box>
@@ -25,7 +45,7 @@ const MapGbifData = ({ MapData, loading }) => {
               animation="wave"
               variant="rect"
               width={"100%"}
-              height={"600px"}
+              height={"680px"}
             />
           </Map>
         </Box>
@@ -36,8 +56,8 @@ const MapGbifData = ({ MapData, loading }) => {
       <React.Fragment>
         <Map
           center={[0.024, 37.9]}
-          zoom={7}
-          style={{ width: "100%", height: "600px" }}
+          zoom={6}
+          style={{ width: "100%", height: "680px" }}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -49,7 +69,7 @@ const MapGbifData = ({ MapData, loading }) => {
               key={data.key}
               position={[data.decimalLatitude, data.decimalLongitude]}
             >
-              {/* <Popup>
+              <Popup>
                 <Link to={`/observations/${data.key}`}>
                   <img
                     src={data.media.map((img) => img.identifier)}
@@ -58,13 +78,13 @@ const MapGbifData = ({ MapData, loading }) => {
                     alt={data.genericName}
                   />
                 </Link>
-              </Popup> */}
+              </Popup>
             </Marker>
           ))}
         </Map>
       </React.Fragment>
     );
   }
-};
+}
 
-export default MapGbifData;
+export default FullMap;

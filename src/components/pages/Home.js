@@ -11,11 +11,7 @@ import MapGbifData from "./../../components/MapData";
 import { Container, Grid, Paper, Typography } from "@material-ui/core";
 import SimpleSlider from "./../SimpleSlider";
 
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-} from "@material-ui/core";
+import { Card, CardActionArea, CardContent } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 
@@ -23,6 +19,8 @@ import "../../App.css";
 import SearchResults from "../SearchResults";
 
 class Home extends React.Component {
+  _isMounted = false;
+
   constructor() {
     super();
 
@@ -36,6 +34,7 @@ class Home extends React.Component {
   }
 
   async componentDidMount() {
+    this._isMounted = true;
     await gbif2
       .get("search", {
         // params: {
@@ -43,15 +42,21 @@ class Home extends React.Component {
         // },
       })
       .then((res) => {
-        this.setState({
-          gbifData: res.data,
-          MapData: res.data,
-          loading: true,
-        });
+        if (this._isMounted) {
+          this.setState({
+            gbifData: res.data,
+            MapData: res.data,
+            loading: true,
+          });
+        }
       })
       .catch((error) => {
         console.log("Error getting data from GBIF :", error);
       });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
@@ -66,15 +71,26 @@ class Home extends React.Component {
             <Grid item xs={12} sm={8} md={7}>
               <SimpleSlider />
             </Grid>
-            <Grid item xs={12} sm={4} md={5} style={{paddingTop: '50px', alignContent:'center'}} >
-            <Card>
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              md={5}
+              style={{ paddingTop: "50px", alignContent: "center" }}
+            >
+              <Card>
                 <CardActionArea>
                   <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2" align='center'>
+                    <Typography
+                      gutterBottom
+                      variant="h5"
+                      component="h2"
+                      align="center"
+                    >
                       Site Description
                     </Typography>
-                    <Typography color="textSecondary" align='center'>
-                    {/* A unique repository of information on bees' interactions. 
+                    <Typography color="textSecondary" align="center">
+                      {/* A unique repository of information on bees' interactions. 
                     The Portal aims to aggregate data through public participation
                      and provide open and free access to biodiversity information. 
                      We welcome your participation and feedback. */}

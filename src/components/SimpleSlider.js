@@ -72,6 +72,7 @@ function SimpleSlider() {
                       : img.identifier;
                   })}
                 style={{ height: "500px", width: "100%", borderRadius: '15px' }}
+                alt={item.genericName}
               />
               </Link>
             </div>

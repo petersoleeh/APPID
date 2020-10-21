@@ -4,14 +4,16 @@ import "./App.css";
 
 import Home from './components/pages/Home'
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 // import { Container, Grid, Paper, Typography } from "@material-ui/core";
 
 import NavBar from "./components/NavBar";
 import Footer from './components/pages/Footer'
+import ErrorFourOFour from "./components/pages/ErrorFourOFour"
 
 import SearchBar from "./components/SearchBar";
+import FullMap from "./components/FullMap";
 
 import ObservationDetail from './components/ObservationDetail'
 import ObservationList from './components/ObservationList'
@@ -113,7 +115,10 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/observations" exact component={ObservationList} />
-            <Route path='/observations/:id' component={ObservationDetail} />
+            <Route path='/observations/:id' exact component={ObservationDetail} />
+            <Route path='/maps' exact component={FullMap} />
+
+            <Route path="*" component={ErrorFourOFour} />
           </Switch>
           {/* <Container style={{ marginTop: "30px" }}>
             <Paper style={{ backgroundColor: "#cfe8fc", height: "60vh" }}>

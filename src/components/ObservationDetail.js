@@ -6,7 +6,6 @@ import Box from "@material-ui/core/Box";
 
 import {
   Grid,
-  Paper,
   Container,
   Typography,
   Card,
@@ -15,7 +14,7 @@ import {
   CardContent,
 } from "@material-ui/core";
 
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -28,7 +27,7 @@ L.Icon.Default.mergeOptions({
 });
 
 function ObservationDetail({ match }) {
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(true);
 
   const [item, setItem] = useState();
 
@@ -37,7 +36,7 @@ function ObservationDetail({ match }) {
       .get(`https://api.gbif.org/v1/occurrence/${match.params.id}`)
       .then((res) => {
         setItem(res.data);
-        setLoading(false);
+        setisLoading(false);
       })
       .catch((err) => {
         console.log("Error getting data from GBIF: " + err);
@@ -83,7 +82,11 @@ function ObservationDetail({ match }) {
       <React.Fragment>
         {console.log(item)}
         <Container>
-          <Grid container spacing={3} style={{ marginTop: "30px" , marginBottom:'150px'}}>
+          <Grid
+            container
+            spacing={3}
+            style={{ marginTop: "30px", marginBottom: "150px" }}
+          >
             <Grid item key={item.id} xs={12} sm={6} md={7}>
               <Card>
                 <CardActionArea>

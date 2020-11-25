@@ -10,7 +10,7 @@ function Footer() {
         <div className="social-media-wrap">
           <div className="footer-logo">
             <Link to="/" className="social-logo">
-              ICIPE
+              APPID
               <i className="fab fa-forumbee" />
             </Link>
           </div>

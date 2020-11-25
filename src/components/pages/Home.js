@@ -3,6 +3,7 @@ import React from "react";
 import gbif from "./../../api/gbif";
 import gbif2 from "./../../api/gbif2";
 import Partners from "./../Partners";
+import Categories from "./../Categories"
 
 import GbifResults from "./../../components/GbifResults";
 import Footer from "./Footer";
@@ -36,7 +37,7 @@ class Home extends React.Component {
   async componentDidMount() {
     this._isMounted = true;
     await gbif2
-      .get("search", {
+      .get('search', {
         // params: {
         //   limit: 20,
         // },
@@ -48,6 +49,7 @@ class Home extends React.Component {
             MapData: res.data,
             loading: true,
           });
+          // console.log(res.data)
         }
       })
       .catch((error) => {
@@ -66,8 +68,8 @@ class Home extends React.Component {
 
     return (
       <React.Fragment>
-        <Container style={{ marginTop: "30px" }}>
-          <Grid container style={{ height: "60vh" }}>
+        <Container style={{ marginTop: "50px" }}>
+          <Grid container > {/* remove this height to give section room for Description*/}
             <Grid item xs={12} sm={8} md={7}>
               <SimpleSlider />
             </Grid>
@@ -90,10 +92,10 @@ class Home extends React.Component {
                       Site Description
                     </Typography>
                     <Typography color="textSecondary" align="center">
-                      {/* A unique repository of information on bees' interactions. 
+                      A unique repository of information on bees' interactions. 
                     The Portal aims to aggregate data through public participation
                      and provide open and free access to biodiversity information. 
-                     We welcome your participation and feedback. */}
+                     We welcome your participation and feedback.
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -101,7 +103,12 @@ class Home extends React.Component {
             </Grid>
           </Grid>
 
-          <Grid container item xs={12} style={{ marginTop: "150px" }}>
+          <Grid item xs={12} style={{ marginTop: "100px" }}>
+            <Categories Categories={Categories}/>
+            {/* <Typography variant="h4">Categories </Typography> */}
+          </Grid>
+
+          <Grid container item xs={12} style={{ marginTop: "120px" }}>
             <Grid item xs={6}>
               <Typography variant="h4">Recent Observations</Typography>
             </Grid>

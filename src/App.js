@@ -17,6 +17,7 @@ import FullMap from "./components/FullMap";
 
 import ObservationDetail from './components/ObservationDetail'
 import ObservationList from './components/ObservationList'
+import SearchResults from "./components/SearchResults";
 
 // import SearchResults from "./components/SearchResults";
 
@@ -26,35 +27,45 @@ import ObservationList from './components/ObservationList'
 
 // import MapGbifData from "./components/MapData";
 
-// import gbif from "./api/gbif";
+import gbif from "./api/gbif";
 // import gbif2 from "./api/gbif2";
 
 class App extends React.Component {
-  // constructor() {
-  //   super();
+  constructor() {
+    super();
 
-  //   this.state = {
-  //     bees: [],
-  //     selectedBees: null,
-  //     gbifData: [],
-  //     loading: false,
-  //     MapData: []
-  //   };
+    this.state = {
+      bees: [],
+      selectedBees: null,
+      // gbifData: [],
+      loading: false,
+      // MapData: []
+    };
+  }
+
+  // async componentDidMount(){
+    // handleSubmit()
+    // .then((res)=> {
+    //   this.setState({
+    //     bees:res.data
+    //   })
+    // })
   // }
 
-  // handleSubmit = async (searchTerm) => {
-  //   const response = await gbif.get("search", {
-  //     params: {
-  //       q: searchTerm,
-  //     },
-  //   });
-    // console.log(response.data);
+  handleSubmit = async (searchTerm) => {
+    const response = await gbif.get("search", {
+      params: {
+        q: searchTerm,
+        limit: 10
+      },
+    });
+    console.log(response.data);
 
-  //   this.setState({
-  //     bees: response.data.results,
-  //     selectedBees: response.data.results[0],
-  //   });
-  // };
+    this.setState({
+      bees: response.data.results,
+      selectedBees: response.data.results[0],
+    });
+  };
 
   // async componentDidMount() {
   //   await gbif2.get("search", {
@@ -76,7 +87,7 @@ class App extends React.Component {
 
 
   render() {
-    // const { selectedBees, bees } = this.state;
+    const { selectedBees, bees } = this.state;
     // const { gbifData, loading } = this.state;
     // const { MapData } = this.state;
 
@@ -94,7 +105,7 @@ class App extends React.Component {
       //             <SearchBar onFormSubmit={this.handleSubmit} />
       //           </Grid>
       //           <Grid item xs={12}>
-      //             <SearchResults bees={selectedBees}   />
+                  // <SearchResults bees={selectedBees}   />
       //             <GbifResults gbifData={gbifData} loading={loading} />
       //           </Grid>
       //           <Grid item xs={12}>
@@ -111,12 +122,14 @@ class App extends React.Component {
       <React.Fragment>
         <Router>
           <NavBar />
+      
           {/* <Footer /> */}
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/observations" exact component={ObservationList} />
             <Route path='/observations/:id' exact component={ObservationDetail} />
             <Route path='/maps' exact component={FullMap} />
+            <Route path='/results' exact component={SearchResults} bees={bees} />
 
             <Route path="*" component={ErrorFourOFour} />
           </Switch>

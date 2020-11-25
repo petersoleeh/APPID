@@ -6,6 +6,6 @@ export default axios.create({
     params: {
         taxonKey: 7799978,
         country: 'KE',
-        limit: 3      
+          
     }
 })

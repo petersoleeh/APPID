@@ -48,6 +48,7 @@
   
   .nav-item {
     height: 80px;
+    display: contents
   }
   
   .nav-links {
@@ -74,6 +75,21 @@
   
   .menu-icon {
     display: none;
+  }
+
+  input {
+    padding: 0.25rem 1rem;
+    border: 0;
+        border-top-color: currentcolor;
+        border-right-color: currentcolor;
+        border-bottom-color: currentcolor;
+        border-left-color: currentcolor;
+    line-height: 2.8;
+    border-radius: 2rem;
+    width: 11rem;
+    background:#383838;
+    color: #FFFFff;
+
   }
   
   @media screen and (max-width: 960px) {

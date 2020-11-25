@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { Paper, TextField } from '@material-ui/core'
+// import { withRouter } from 'react-router-dom'
+
+// import { Paper, TextField } from '@material-ui/core'
 
 
 class SearchBar extends React.Component {
@@ -9,6 +11,7 @@ class SearchBar extends React.Component {
     }
 
     handleChange = (event) => this.setState({ searchTerm: event.target.value})
+    
 
     handleSubmit = (event) => {
         const { searchTerm } = this.state
@@ -17,17 +20,24 @@ class SearchBar extends React.Component {
         onFormSubmit(searchTerm)
 
         event.preventDefault()
-
-
     }
 
+    // submitForm (e) {
+    //     e.preventDefault()
+    //     this.props.history.push('/results')
+    //   }
+    
+
     render() {
+        
         return(
-            <Paper elevation={6} style={{padding: '20px'}}>
-                <form onSubmit={this.handleSubmit}>
-                    <TextField fullWidth label="Search..."  onChange={this.handleChange}/>
+                <form onSubmit={this.handleSubmit } >
+                    <input   
+                        placeholder="Search..."  
+                        onChange={this.handleChange}
+                        value = {this.state.searchTerm}
+                    />
                 </form>
-            </Paper>
         )
     }
 }

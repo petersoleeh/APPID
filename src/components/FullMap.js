@@ -25,13 +25,19 @@ function FullMap() {
   useEffect(() => {
     axios
       .get(
-        `https://api.gbif.org/v1/occurrence/search?taxonKey=7799978&country=KE`
+        ` https://be.africanplantpollinatorinteractions.org/api/v1/data/1`,
+        {auth: {
+          username: 'icipe',
+          password: 'icipe'
+        }}
       )
       .then((res) => {
         setMapData(res.data);
         setisLoading(false);
+        console.log(res)
       })
       .catch((err) => {
+        
         console.log("Error getting data from GBIF: " + err);
       });
   }, []);
@@ -64,15 +70,15 @@ function FullMap() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
 
-          {MapData.results.map((data) => (
+          {MapData.map((data) => (
             <Marker
-              key={data.key}
-              position={[data.decimalLatitude, data.decimalLongitude]}
+              key={data._uuid}
+              position={[data._geolocation[0], data._geolocation[1]]}
             >
               <Popup>
                 <Link to={`/observations/${data.key}`}>
                   <img
-                    src={data.media.map((img) => img.identifier)}
+                    // src={data.media.map((img) => img.identifier)}
                     width="150"
                     height="150"
                     alt={data.genericName}

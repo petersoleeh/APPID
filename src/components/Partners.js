@@ -14,7 +14,7 @@ const Partners = () => {
       <Container maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={3}>
-            <Link to={{ pathname: "https://upande.com/" }} target="_blank">
+            <Link to={{ pathname: "http://www.icipe.org/" }} target="_blank">
               <Card>
                 <CardActionArea>
                   <CardMedia
@@ -22,7 +22,7 @@ const Partners = () => {
                     alt="upande"
                     height="100px"
                     width="100%"
-                    image="./images/upande.png"
+                    image="./images/icipe.jpg"
                     title=""
                     style = {{objectFit: 'contain'}}
                   />
@@ -51,7 +51,7 @@ const Partners = () => {
             </Link>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Link to={{ pathname: "http://www.icipe.org/" }} target="_blank">
+            <Link to={{ pathname: "http://www.gbif.org/" }} target="_blank">
               <Card>
                 <CardActionArea>
                   <CardMedia
@@ -59,7 +59,7 @@ const Partners = () => {
                     alt="icipe"
                     height="100px"
                     width="100%"
-                    image="./images/icipe.jpg"
+                    image="./images/GBIF.png"
                     title=""
                     style = {{objectFit: 'contain'}}
                   />
@@ -68,7 +68,7 @@ const Partners = () => {
             </Link>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Link to={{ pathname: "https://www.gbif.org/" }} target="_blank">
+            <Link to={{ pathname: "https://www.upande.com/" }} target="_blank">
               <Card>
                 <CardActionArea>
                   <CardMedia
@@ -76,7 +76,7 @@ const Partners = () => {
                     alt="gbif"
                     height="100px"
                     width="100%"
-                    image="./images/GBIF.png"
+                    image="./images/upande.png"
                     title=""
                     style = {{objectFit: 'contain'}}
                   />

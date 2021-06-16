@@ -19,6 +19,11 @@ import ObservationDetail from './components/ObservationDetail'
 import ObservationList from './components/ObservationList'
 import SearchResults from "./components/SearchResults";
 
+import Application from "./components/Application";
+import UserProvider from "./providers/UserProvider";
+
+import SignIn from "./components/SignIn"
+
 // import SearchResults from "./components/SearchResults";
 
 // import ObservationList from "./components/ObservationList";
@@ -31,6 +36,7 @@ import gbif from "./api/gbif";
 // import gbif2 from "./api/gbif2";
 
 class App extends React.Component {
+  
   constructor() {
     super();
 
@@ -42,6 +48,7 @@ class App extends React.Component {
       // MapData: []
     };
   }
+  
 
   // async componentDidMount(){
     // handleSubmit()
@@ -120,6 +127,11 @@ class App extends React.Component {
       //   </Router>
       // </React.Fragment>
       <React.Fragment>
+
+    {/* <UserProvider>
+      <Application />
+    </UserProvider> */}
+    
         <Router>
           <NavBar />
       
@@ -129,7 +141,9 @@ class App extends React.Component {
             <Route path="/observations" exact component={ObservationList} />
             <Route path='/observations/:id' exact component={ObservationDetail} />
             <Route path='/maps' exact component={FullMap} />
+            <Route path='/login' exact component={SignIn} />
             <Route path='/results' exact component={SearchResults} bees={bees} />
+
 
             <Route path="*" component={ErrorFourOFour} />
           </Switch>
@@ -159,6 +173,7 @@ class App extends React.Component {
           <Footer />
 
         </Router>
+        
       </React.Fragment>
     );
   }

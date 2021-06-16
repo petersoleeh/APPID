@@ -8,18 +8,18 @@ const base64data = UsernamePasswordBuffer.toString('base64')
 
 
 export default axios.create({
-    // headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Basic ${base64data}`
-    // },
-    baseURL: 'https://api.gbif.org/v1/occurrence/',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${base64data}`
+    },
+    baseURL: 'https://be.africanplantpollinatorinteractions.org/api/v1/',
     // auth:{
     //     username: 'icipe',
     //     password: 'icipe'
 
-    // },
-    params: {
-        taxonKey: 7799978,
-        country: 'KE'    
-    }
+    // }
+    // params: {
+    //     taxonKey: 7799978,
+    //     country: 'KE'    
+    // }
 })

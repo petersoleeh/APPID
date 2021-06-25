@@ -21,7 +21,7 @@ class ObservationList extends React.Component {
 
   async componentDidMount() {
     await gbif2
-      .get("search")
+      .get("/data/1")
       .then((res) => {
         this.setState({
           gbifData: res.data,
@@ -29,7 +29,7 @@ class ObservationList extends React.Component {
         });
       })
       .catch((error) => {
-        console.log("Error getting data from GBIF :", error);
+        console.log("Error getting data from Backend :", error);
       });
   }
 
@@ -133,20 +133,21 @@ class ObservationList extends React.Component {
         </React.Fragment>
       );
     } else {
-      console.log(gbifData.results[0].eventDate);
+      console.log(gbifData);
       return (
         <React.Fragment>
           <Container style={{ marginTop: "30px" }}>
-            {gbifData.results.map((data) => (
-              <article key={data.key} className="photo-card">
+            {gbifData.map((data) => (
+              <article key={data._uuid} className="photo-card">
                 <figure className="photo">
-                  <Link to={`/observations/${data.key}`}>
+                  <Link to={`/observations/${data._uuid}`}>
+                    {console.log(data)}
                     <img
                       className="img-list"
-                      src={data.media.map((img) => {
-                        return img.length === 0
-                          ? "https://images.unsplash.com/photo-1427847907429-d1ba99bf013d"
-                          : img.identifier;
+                      src={data._attachments.slice(0, 1).map((img) => {
+                        return data._attachments === "undefined"
+                          ? "https://source.unsplash.com/I3Ah90pVRBo"
+                          : img.download_url;
                       })}
                       alt=""
                       height={"150px"}
@@ -158,18 +159,28 @@ class ObservationList extends React.Component {
                   gutterBottom
                   variant="h5"
                   component="h2"
+                  fontStyle="italic"
                 >
-                  {data.acceptedScientificName}
+                  {typeof data.repeat_group !== "undefined" ?
+                  data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " ") : null 
+                  // console.log(data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " ")) : null
+                  } 
+                  {/* {console.log(data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " "))} */}
+                  
                 </Typography>
-                <Moment className="date">{data.eventDate}</Moment>
+                <Moment className="date" format="D MMMM YYYY">{(data._validation_status.timestamp*1000)}</Moment>
                 <Typography
                   color="textSecondary"
                   className="description"
                   variant="body2"
+                  
                   component="p"
                 >
-                  <i className="fas fa-map-marker-alt"></i>{" "}
-                  {data.verbatimLocality}
+                  {typeof data.repeat_group !== "undefined" ? data._validation_status.label : null 
+                  // console.log(data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " ")) : null
+                  } 
+                  {/* <i className="fas fa-map-marker-alt"></i>{" "} */}
+                  {/* {data.verbatimLocality} */}
                 </Typography>
               </article>
             ))}

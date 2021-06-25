@@ -20,6 +20,7 @@ class ObservationList extends React.Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
     await gbif2
       .get("/data/1")
       .then((res) => {
@@ -160,9 +161,10 @@ class ObservationList extends React.Component {
                   variant="h5"
                   component="h2"
                   fontStyle="italic"
+                  fontWeight="400"
                 >
                   {typeof data.repeat_group !== "undefined" ?
-                  data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " ") : null 
+                  data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace(/_/g, " ") : null 
                   // console.log(data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " ")) : null
                   } 
                   {/* {console.log(data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " "))} */}
@@ -172,11 +174,22 @@ class ObservationList extends React.Component {
                 <Typography
                   color="textSecondary"
                   className="description"
-                  variant="body2"
-                  
+                  variant="body2"  
                   component="p"
                 >
                   {typeof data.repeat_group !== "undefined" ? data._validation_status.label : null 
+                  // console.log(data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " ")) : null
+                  } 
+                  {/* <i className="fas fa-map-marker-alt"></i>{" "} */}
+                  {/* {data.verbatimLocality} */}
+                </Typography>
+                <Typography
+                  color="textSecondary"
+                  className="interact"
+                  variant="body2"  
+                  component="p"
+                >
+                  {typeof data.repeat_group !== "undefined" ? data._validation_status.color : null 
                   // console.log(data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " ")) : null
                   } 
                   {/* <i className="fas fa-map-marker-alt"></i>{" "} */}

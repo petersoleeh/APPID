@@ -35,12 +35,15 @@ class Home extends React.Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0, 0);
     this._isMounted = true;
     await gbif2
       .get('data/1',{
-        // params: {
-        //   limit: 20,
-        // },
+    // auth:{
+    //     username: 'icipe',
+    //     password: 'icipe'
+
+    // }
       })
       .then((res) => {
         if (this._isMounted) {

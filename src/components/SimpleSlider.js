@@ -17,7 +17,7 @@ function SimpleSlider() {
   useEffect(() => {
     axios
       .get(
-        `https://api.gbif.org/v1/occurrence/search?taxonKey=7799978&country=KE`
+        `https://be.africanplantpollinatorinteractions.org/api/v1/data/1`
       )
       .then((res) => {
         setItem(res.data);
@@ -25,7 +25,7 @@ function SimpleSlider() {
       })
 
       .catch((err) => {
-        console.log("Error getting data from GBIF: " + err);
+        console.log("Error getting data from MEDIA API: " + err);
       });
   }, []);
 
@@ -61,15 +61,15 @@ function SimpleSlider() {
       <React.Fragment>
         <Slider {...settings}>
           {console.log(item)}
-          {item.results.slice(3, 7).map((item) => (
+          {item.slice(4, 7).map((item) => (
             
             <div key={item.key}>
             <Link to={`/observations/${item.key}`}>
               <img
-                src={item.media.map((img) => {
+                src={item._attachments.slice(0, 1).map((img) => {
                     return img.length === 0
                       ? "https://images.unsplash.com/photo-1427847907429-d1ba99bf013d"
-                      : img.identifier;
+                      : img.download_url;
                   })}
                 style={{ height: "500px", width: "100%", borderRadius: '15px' }}
                 alt={item.genericName}

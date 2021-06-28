@@ -63,8 +63,8 @@ function SimpleSlider() {
           {console.log(item)}
           {item.slice(4, 7).map((item) => (
             
-            <div key={item.key}>
-            <Link to={`/observations/${item.key}`}>
+            <div key={item._uuid}>
+            <Link to={`/observations/${item._id}`}>
               <img
                 src={item._attachments.slice(0, 1).map((img) => {
                     return img.length === 0

@@ -107,10 +107,10 @@ class Home extends React.Component {
             </Grid>
           </Grid>
 
-          <Grid item xs={12} style={{ marginTop: "100px" }}>
-            <Categories Categories={Categories}/>
+          {/* <Grid item xs={12} style={{ marginTop: "100px" }}> */}
+            {/* <Categories Categories={Categories}/> */}
             {/* <Typography variant="h4">Categories </Typography> */}
-          </Grid>
+          {/* </Grid> */}
 
           <Grid container item xs={12} style={{ marginTop: "120px" }}>
             <Grid item xs={6}>

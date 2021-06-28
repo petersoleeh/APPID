@@ -37,7 +37,9 @@ import gbif from "./api/gbif";
 
 class App extends React.Component {
   
+  
   constructor() {
+    window.scrollTo(0, 0);
     super();
 
     this.state = {

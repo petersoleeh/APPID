@@ -76,9 +76,9 @@ function FullMap() {
               position={[data._geolocation[0], data._geolocation[1]]}
             >
               <Popup>
-                <Link to={`/observations/${data.key}`}>
+                <Link to={`/observations/${data._id}`}>
                   <img
-                    // src={data.media.map((img) => img.identifier)}
+                    src={data._attachments.slice(0, 1).map((img) => img.download_url)}
                     width="150"
                     height="150"
                     alt={data.genericName}

@@ -141,12 +141,12 @@ class ObservationList extends React.Component {
             {gbifData.map((data) => (
               <article key={data._uuid} className="photo-card">
                 <figure className="photo">
-                  <Link to={`/observations/${data._uuid}`}>
+                  <Link to={`/observations/${data._id}`}>
                     {console.log(data)}
                     <img
                       className="img-list"
                       src={data._attachments.slice(0, 1).map((img) => {
-                        return data._attachments === "undefined"
+                        return data._attachments.length === 0
                           ? "https://source.unsplash.com/I3Ah90pVRBo"
                           : img.download_url;
                       })}

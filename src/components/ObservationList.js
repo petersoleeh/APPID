@@ -183,18 +183,7 @@ class ObservationList extends React.Component {
                   {/* <i className="fas fa-map-marker-alt"></i>{" "} */}
                   {/* {data.verbatimLocality} */}
                 </Typography>
-                <Typography
-                  color="textSecondary"
-                  className="interact"
-                  variant="body2"  
-                  component="p"
-                >
-                  {typeof data.repeat_group !== "undefined" ? data._validation_status.color : null 
-                  // console.log(data.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace("_", " ")) : null
-                  } 
-                  {/* <i className="fas fa-map-marker-alt"></i>{" "} */}
-                  {/* {data.verbatimLocality} */}
-                </Typography>
+
               </article>
             ))}
           </Container>

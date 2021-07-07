@@ -109,7 +109,7 @@ const GbifResults = ({ gbifData, loading }) => {
           <Grid container spacing={3}>
             {gbifData.data.slice(0, 6).map((data) => (
               <Grid item key={data._id} xs={12} sm={6} md={2}>
-                <Link to={`/observations/${data._uuid}`}>
+                <Link to={`/observations/${data._id}`}>
                   <Card>
                     <CardActionArea>
                       <CardMedia

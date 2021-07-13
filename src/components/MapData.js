@@ -1,49 +1,55 @@
 import React from "react";
 
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import "react-leaflet-markercluster/dist/styles.min.css";
+import MarkerClusterGroup from "react-leaflet-markercluster";
+
 
 import Skeleton from "@material-ui/lab/Skeleton";
 import Box from "@material-ui/core/Box";
 
-delete L.Icon.Default.prototype._getIconUrl;
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+let DefaultIcon = L.icon({
+    iconUrl: "/images/bee_drop.png",
+    iconSize: [25,41],
+    iconAnchor: [12,41],
+    shadowUrl: iconShadow
 });
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 const MapGbifData = ({ MapData, loading }) => {
   if (!loading) {
     return (
       <React.Fragment>
         <Box>
-          <Map>
+          <MapContainer>
             <Skeleton
               animation="wave"
               variant="rect"
               width={"100%"}
               height={"600px"}
             />
-          </Map>
+          </MapContainer>
         </Box>
       </React.Fragment>
     );
   } else {
     return (
       <React.Fragment>
-        <Map
+        <MapContainer
           center={[0.024, 37.9]}
           zoom={7}
           style={{ width: "100%", height: "600px" }}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
           />
-
+          <MarkerClusterGroup>
           {MapData.data.map((data) => (
             <Marker
               key={data._id}
@@ -61,7 +67,8 @@ const MapGbifData = ({ MapData, loading }) => {
               </Popup> */}
             </Marker>
           ))}
-        </Map>
+          </MarkerClusterGroup>
+        </MapContainer>
       </React.Fragment>
     );
   }

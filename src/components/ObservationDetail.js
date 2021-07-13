@@ -14,7 +14,7 @@ import {
   CardContent,
 } from "@material-ui/core";
 
-import { Map, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
@@ -203,14 +203,14 @@ function ObservationDetail({ match }) {
               </Card>
             </Grid>
             <Grid item key={item.key} xs={12} sm={4} md={5}>
-              <Map
+              <MapContainer
                 center={[item._geolocation[0], item._geolocation[1]]}
                 zoom={13}
                 style={{ width: "100%", height: "500px" }}
               >
                 <TileLayer
                   attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
                 />
 
                 <Marker
@@ -226,7 +226,7 @@ function ObservationDetail({ match }) {
                     />
                   </Popup> */}
                 </Marker>
-              </Map>
+              </MapContainer>
               <Typography
                 gutterBottom
                 variant="h5"

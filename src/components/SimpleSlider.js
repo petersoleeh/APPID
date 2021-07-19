@@ -17,7 +17,7 @@ function SimpleSlider() {
   useEffect(() => {
     axios
       .get(
-        `https://be.africanplantpollinatorinteractions.org/api/v1/data/1`
+        `https://be.africanplantpollinatorinteractions.org/api/v1/data/3`
       )
       .then((res) => {
         setItem(res.data);

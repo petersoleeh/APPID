@@ -29,7 +29,7 @@ function FullMap() {
 
   useEffect(() => {
     axios
-      .get(` https://be.africanplantpollinatorinteractions.org/api/v1/data/1`, {
+      .get(` https://be.africanplantpollinatorinteractions.org/api/v1/data/3`, {
         auth: {
           username: "icipe",
           password: "icipe",
@@ -71,7 +71,7 @@ function FullMap() {
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <MarkerClusterGroup>
             {MapData.map((data) => (

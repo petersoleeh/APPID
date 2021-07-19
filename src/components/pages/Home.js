@@ -38,7 +38,7 @@ class Home extends React.Component {
     window.scrollTo(0, 0);
     this._isMounted = true;
     await gbif2
-      .get('data/1',{
+      .get('data/3',{
     // auth:{
     //     username: 'icipe',
     //     password: 'icipe'
@@ -57,7 +57,7 @@ class Home extends React.Component {
         }
       })
       .catch((error) => {
-        console.log("Error getting data from GBIF :", error);
+        console.log("Error getting data from Backend :", error);
       });
   }
 

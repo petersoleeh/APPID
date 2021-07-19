@@ -22,7 +22,7 @@ class ObservationList extends React.Component {
   async componentDidMount() {
     window.scrollTo(0, 0);
     await gbif2
-      .get("/data/1")
+      .get("/data/3")
       .then((res) => {
         this.setState({
           gbifData: res.data,

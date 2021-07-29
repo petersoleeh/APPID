@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 
 import NavBar from "./components/NavBar";
 import Footer from './components/pages/Footer'
+import About from "./components/pages/About";
 import ErrorFourOFour from "./components/pages/ErrorFourOFour"
 
 import SearchBar from "./components/SearchBar";
@@ -141,6 +142,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/observations" exact component={ObservationList} />
+            <Route path="/about" exact component={About} />
             <Route path='/observations/:id' exact component={ObservationDetail} />
             <Route path='/maps' exact component={FullMap} />
             <Route path='/login' exact component={SignIn} />

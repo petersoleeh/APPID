@@ -23,7 +23,7 @@ export const Button = ({
         : SIZES[0]
 
         return (
-            <Link to='/login' className='btn-mobile'>
+            <Link to={{ pathname: "https://fe.africanplantpollinatorinteractions.org/accounts/register/" }} target="_blank"  className='btn-mobile'>
                 <button 
                 className={`btn ${checkButtonStyle} ${checkButtonSize}`}
                 onClick={onClick}

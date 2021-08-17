@@ -145,7 +145,6 @@ class App extends React.Component {
             <Route path="/about" exact component={About} />
             <Route path='/observations/:id' exact component={ObservationDetail} />
             <Route path='/maps' exact component={FullMap} />
-            <Route path='/login' exact component={SignIn} />
             <Route path='/results' exact component={SearchResults} bees={bees} />
 
 

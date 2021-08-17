@@ -71,9 +71,9 @@ function NavBar() {
             <i className={click ? "fas fa-times" : "fas fa-bars"} />
           </div>
           <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <SearchBar onFormSubmit={handleSubmit}/>
-            </li>
+            </li> */}
 
             <li className="nav-item">
               <Link
@@ -96,15 +96,15 @@ function NavBar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/login"
+                to={{ pathname: "https://fe.africanplantpollinatorinteractions.org/accounts/register/" }} target="_blank"
                 className="nav-links-mobile"
                 onClick={closeMenu}
               >
-                Login
+                Register
               </Link>
             </li>
           </ul>
-          {button && <Button buttonStyle="btn--outline">Login</Button>}
+          {button && <Button buttonStyle="btn--outline">Register</Button>}
         </div>
       </nav>
     </React.Fragment>
@@ -124,9 +124,9 @@ function NavBar() {
         <i className={click ? "fas fa-times" : "fas fa-bars"} />
       </div>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <SearchBar onFormSubmit={handleSubmit}/>
-        </li>
+        </li> */}
 
         <li className="nav-item">
           <Link
@@ -149,15 +149,15 @@ function NavBar() {
         </li>
         <li className="nav-item">
           <Link
-            to="/login"
+            to={{ pathname: "https://fe.africanplantpollinatorinteractions.org/accounts/register/#/" }} target="_blank"
             className="nav-links-mobile"
             onClick={closeMenu}
           >
-            Login
+            Register
           </Link>
         </li>
       </ul>
-      {button && <Button buttonStyle="btn--outline">Login</Button>}
+      {button && <Button buttonStyle="btn--outline">Register</Button>}
     </div>
   </nav>
 </React.Fragment>

@@ -113,16 +113,20 @@ function ObservationDetail({ match }) {
                       color="textSecondary"
                     >
                       <span style={{ fontStyle: "italic" }}>
-                        {" "}
-                        {typeof item.repeat_group !== "undefined"
+                        {!!item.repeat_group[0][
+                          "repeat_group/capture_insect_details/insect_scientific_name"
+                        ]
                           ? item.repeat_group[0][
                               "repeat_group/capture_insect_details/insect_scientific_name"
                             ].replace(/_/g, " ")
-                          : "unknown"}
+                          : " unknown"}
                       </span>
                     </Typography>
                     <Typography color="textSecondary">
-                      Observer: {item.identifiedBy}
+                      Observer:{" "}
+                      <span style={{ fontStyle: "normal" }}>
+                        {!!item._submitted_by ? item._submitted_by : " unknown"}
+                      </span>
                     </Typography>
                     <Typography color="textSecondary">
                       Location: {item.verbatimLocality}
@@ -130,7 +134,11 @@ function ObservationDetail({ match }) {
                     <Typography color="textSecondary">
                       Date:{" "}
                       <Moment format="D MMMM YYYY">
-                        {item._validation_status.timestamp * 1000}
+                        <span style={{ fontStyle: "normal" }}>
+                          {!!(item._validation_status.timestamp * 1000)
+                            ? item._validation_status.timestamp * 1000
+                            : " unknown"}
+                        </span>
                       </Moment>
                     </Typography>
                   </CardContent>
@@ -148,12 +156,13 @@ function ObservationDetail({ match }) {
                     >
                       Sex:{" "}
                       <span style={{ fontStyle: "normal" }}>
-                        {" "}
-                        {typeof item.repeat_group !== "undefined"
+                        {!!item.repeat_group[0][
+                          "repeat_group/capture_insect_details/sex"
+                        ]
                           ? item.repeat_group[0][
                               "repeat_group/capture_insect_details/sex"
                             ].replace(/_/g, " ")
-                          : "unknown"}
+                          : " unknown"}
                       </span>
                     </Typography>
                     <Typography
@@ -162,12 +171,13 @@ function ObservationDetail({ match }) {
                     >
                       Life stage:{" "}
                       <span style={{ fontStyle: "normal" }}>
-                        {" "}
-                        {typeof item.repeat_group !== "undefined"
+                        {!!item.repeat_group[0][
+                          "repeat_group/capture_insect_details/life_stage"
+                        ]
                           ? item.repeat_group[0][
                               "repeat_group/capture_insect_details/life_stage"
                             ].replace(/_/g, " ")
-                          : "unknown"}
+                          : " unknown"}
                       </span>
                     </Typography>
                     <Typography
@@ -176,12 +186,13 @@ function ObservationDetail({ match }) {
                     >
                       Behaviour:{" "}
                       <span style={{ fontStyle: "normal" }}>
-                        {" "}
-                        {typeof item.repeat_group !== "undefined"
+                        {!!item.repeat_group[0][
+                          "repeat_group/interactions_details/visitor_behaviour"
+                        ]
                           ? item.repeat_group[0][
                               "repeat_group/interactions_details/visitor_behaviour"
                             ].replace(/_/g, " ")
-                          : "unknown"}
+                          : " unknown"}
                       </span>
                     </Typography>
                     <Typography
@@ -190,12 +201,13 @@ function ObservationDetail({ match }) {
                     >
                       Threatened species:{" "}
                       <span style={{ fontStyle: "normal" }}>
-                        {" "}
-                        {typeof item.repeat_group !== "undefined"
+                        {!!item.repeat_group[0][
+                          "repeat_group/capture_insect_details/threatened_species"
+                        ]
                           ? item.repeat_group[0][
                               "repeat_group/capture_insect_details/threatened_species"
                             ].replace(/_/g, " ")
-                          : "unknown"}
+                          : " unknown"}
                       </span>
                     </Typography>
                   </CardContent>

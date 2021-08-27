@@ -6,9 +6,8 @@ import Box from "@material-ui/core/Box";
 import gbif2 from "../api/gbif2";
 import "./ObservationList.css";
 
-import { Typography, Container, Grid } from "@material-ui/core";
+import { Typography, Container } from "@material-ui/core";
 import Moment from "react-moment";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 class ObservationList extends React.Component {
   constructor() {

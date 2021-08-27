@@ -13,7 +13,7 @@ const Partners = () => {
     <React.Fragment>
       <Container maxWidth="lg">
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4}>
             <Link to={{ pathname: "http://www.icipe.org/" }} target="_blank">
               <Card>
                 <CardActionArea>
@@ -30,9 +30,9 @@ const Partners = () => {
               </Card>
             </Link>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4}>
             <Link
-              to={{ pathname: "https://www.museums.or.ke/" }}
+              to={{ pathname: "https://jrsbiodiversity.org/" }}
               target="_blank"
             >
               <Card>
@@ -42,7 +42,7 @@ const Partners = () => {
                     alt="nmk"
                     height="100px"
                     width="100%"
-                    image="./images/nmk.jpg"
+                    image="./images/JRS.png"
                     title=""
                     style = {{objectFit: 'contain'}}
                   />
@@ -50,7 +50,7 @@ const Partners = () => {
               </Card>
             </Link>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          {/* <Grid item xs={12} sm={6} md={3}>
             <Link to={{ pathname: "http://www.gbif.org/" }} target="_blank">
               <Card>
                 <CardActionArea>
@@ -66,8 +66,8 @@ const Partners = () => {
                 </CardActionArea>
               </Card>
             </Link>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          </Grid> */}
+          <Grid item xs={12} sm={6} md={4}>
             <Link to={{ pathname: "https://www.upande.com/" }} target="_blank">
               <Card>
                 <CardActionArea>

@@ -8,6 +8,7 @@ import "./ObservationList.css";
 
 import { Typography, Container, Grid } from "@material-ui/core";
 import Moment from "react-moment";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 class ObservationList extends React.Component {
   constructor() {
@@ -27,6 +28,7 @@ class ObservationList extends React.Component {
         this.setState({
           gbifData: res.data,
           loading: true,
+          allData: res.data
         });
       })
       .catch((error) => {
@@ -34,8 +36,17 @@ class ObservationList extends React.Component {
       });
   }
 
+  _onKeyUp = e => {
+    const gbifData = this.state.allData.filter(item =>
+      item.repeat_group[0]["repeat_group/capture_insect_details/insect_scientific_name"].replace(/_/g, " ").toLowerCase().includes(e.target.value.toLowerCase())
+      
+      );
+      this.setState({gbifData})
+  };
+  
+
   render() {
-    const { gbifData, loading } = this.state;
+    const { gbifData, allData, loading } = this.state;
     if (!loading) {
       return (
         <React.Fragment>
@@ -137,8 +148,26 @@ class ObservationList extends React.Component {
       console.log(gbifData);
       return (
         <React.Fragment>
+				<div className="search-outer">
+					<form
+						role="search"
+						method="get"
+						id="searchform"
+						className="searchform"
+						action=""
+					>
+						{/* input field activates onKeyUp function on state change */}
+						<input
+							type="search"
+							onChange={this._onKeyUp}
+							name="s"
+							id="s"
+							placeholder="Search"
+						/>
+					</form>
+				</div>
           <Container style={{ marginTop: "30px" }}>
-            {gbifData.map((data) => (
+            {this.state.gbifData.map((data, _uuid) => (
               <article key={data._uuid} className="photo-card">
                 <figure className="photo">
                   <Link to={`/observations/${data._id}`}>

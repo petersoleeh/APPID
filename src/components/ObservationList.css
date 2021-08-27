@@ -77,6 +77,85 @@
   padding-top: 0.75rem;
 }
 
+/* Observation list search */
+
+.search-outer {
+  margin: 50px 0 35px;
+  text-align: center;
+}
+
+.searchform {
+  display: inline-block;
+  position: relative;
+  left: 0;
+  right: 0;
+}
+
+input {
+  outline: medium none;
+}
+
+input[type="search"] {
+  background-color: transparent;
+  border: medium none;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: grey;
+  border-radius: 0;
+  box-sizing: content-box;
+  color: #000;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 100%;
+  margin-bottom: 0;
+  padding: 3px 0;
+  transition: all 0.5s ease 0s;
+  max-width: 300px;
+  width: calc(100% - 15px);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+
+}
+
+
+focus {
+  background-color: transparent;
+  color: #fff;
+  cursor: auto;
+  padding: 3px 0;
+}
+
+
+hover input[type="search"] {
+  background-color: transparent;
+  color: black;
+  cursor: auto;
+  padding: 3px 0;
+}
+
+
+button[type="submit"] {
+  background-color: rgba(0, 0, 0, 0);
+  border: medium none;
+  color: #000;
+  cursor: pointer;
+  height: 30px;
+  line-height: 1;
+  float: right;
+  font-size: 1em;
+  pointer-events: none;
+  width: auto;
+  z-index: 1000000000;
+}
+
+.fa-search {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+
 /* Re-configure card layout for smaller screens */
 @media (max-width: 640px) {
   .photo-card {
@@ -86,7 +165,7 @@
       "photo photo photo"
       "description description description"
       "interact interact interact"
-      "date date like";    
+      "date date like";
     padding: 0.75rem 0;
   }
 

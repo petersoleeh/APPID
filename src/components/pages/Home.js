@@ -3,13 +3,12 @@ import React from "react";
 import gbif from "./../../api/gbif";
 import gbif2 from "./../../api/gbif2";
 import Partners from "./../Partners";
-import Categories from "./../Categories"
+import Categories from "./../Categories";
 
 import GbifResults from "./../../components/GbifResults";
-import Footer from "./Footer";
 
 import MapGbifData from "./../../components/MapData";
-import { Container, Grid, Paper, Typography } from "@material-ui/core";
+import { Container, Grid, Typography } from "@material-ui/core";
 import SimpleSlider from "./../SimpleSlider";
 
 import { Card, CardActionArea, CardContent } from "@material-ui/core";
@@ -17,7 +16,6 @@ import { Card, CardActionArea, CardContent } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import "../../App.css";
-import SearchResults from "../SearchResults";
 
 class Home extends React.Component {
   _isMounted = false;
@@ -38,12 +36,11 @@ class Home extends React.Component {
     window.scrollTo(0, 0);
     this._isMounted = true;
     await gbif2
-      .get('data/3',{
-    // auth:{
-    //     username: 'icipe',
-    //     password: 'icipe'
-
-    // }
+      .get("data/3", {
+        // auth:{
+        //     username: 'icipe',
+        //     password: 'icipe'
+        // }
       })
       .then((res) => {
         if (this._isMounted) {
@@ -52,8 +49,8 @@ class Home extends React.Component {
             MapData: res,
             loading: true,
           });
-          console.log(res.data[0]._attachments[0].download_url)
-          console.log(res)
+          console.log(res.data[0]._attachments[0].download_url);
+          console.log(res);
         }
       })
       .catch((error) => {
@@ -73,7 +70,9 @@ class Home extends React.Component {
     return (
       <React.Fragment>
         <Container style={{ marginTop: "50px" }}>
-          <Grid container > {/* remove this height to give section room for Description*/}
+          <Grid container>
+            {" "}
+            {/* remove this height to give section room for Description*/}
             <Grid item xs={12} sm={8} md={7}>
               <SimpleSlider />
             </Grid>
@@ -96,10 +95,11 @@ class Home extends React.Component {
                       Site Description
                     </Typography>
                     <Typography color="textSecondary" align="center">
-                      A unique repository of information on bees' interactions. 
-                    The Portal aims to aggregate data through public participation
-                     and provide open and free access to biodiversity information. 
-                     We welcome your participation and feedback.
+                      A unique repository of information on bees' interactions.
+                      The Portal aims to aggregate data through public
+                      participation and provide open and free access to
+                      biodiversity information. We welcome your participation
+                      and feedback.
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -108,8 +108,8 @@ class Home extends React.Component {
           </Grid>
 
           {/* <Grid item xs={12} style={{ marginTop: "100px" }}> */}
-            {/* <Categories Categories={Categories}/> */}
-            {/* <Typography variant="h4">Categories </Typography> */}
+          {/* <Categories Categories={Categories}/> */}
+          {/* <Typography variant="h4">Categories </Typography> */}
           {/* </Grid> */}
 
           <Grid container item xs={12} style={{ marginTop: "120px" }}>
@@ -143,12 +143,8 @@ class Home extends React.Component {
           >
             <Partners Partners={Partners} />
           </Grid>
-          <Grid item xs={12} style={{ marginTop: "50px" }}>
-            {/* <Typography variant="h4">Footer </Typography> */}
-          </Grid>
-          <Grid item xs={12} style={{ marginTop: "50px" }}>
-            {/* <Footer /> */}
-          </Grid>
+          <Grid item xs={12} style={{ marginTop: "50px" }}></Grid>
+          <Grid item xs={12} style={{ marginTop: "50px" }}></Grid>
         </Container>
       </React.Fragment>
     );
@@ -251,9 +247,9 @@ export default Home;
 //                       Site Description
 //                     </Typography>
 //                     <Typography color="textSecondary" align="center">
-//                       A unique repository of information on bees' interactions. 
+//                       A unique repository of information on bees' interactions.
 //                     The Portal aims to aggregate data through public participation
-//                      and provide open and free access to biodiversity information. 
+//                      and provide open and free access to biodiversity information.
 //                      We welcome your participation and feedback.
 //                     </Typography>
 //                   </CardContent>
@@ -311,4 +307,3 @@ export default Home;
 // }
 
 // export default Home;
-

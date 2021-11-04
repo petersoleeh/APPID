@@ -11,6 +11,7 @@ import {
   Marker,
   Popup,
   LayersControl,
+  WMSTileLayer,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -92,6 +93,21 @@ function FullMap() {
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Topography">
+              <WMSTileLayer
+                layers= 'OSM-Overlay-WMS,TOPO-WMS'
+                url='http://ows.mundialis.de/services/service?'
+              />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name="Kenya Biomes">
+              <WMSTileLayer
+                layers= 'kenya_biomes_1'
+                url='http://maps.biodiversityatlaskenya.org/geoserver/wms?'
+                attribution='<a href="https://github.com/tomchadwin/qgis2web">qgis2web</a> | &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                format='image/png'
+                overlay='true'
               />
             </LayersControl.BaseLayer>
             <MarkerClusterGroup>

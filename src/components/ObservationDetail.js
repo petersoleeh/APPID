@@ -84,7 +84,7 @@ function ObservationDetail({ match }) {
   } else {
     return (
       <React.Fragment>
-        {console.log(item)}
+        {console.log(item._submission_time)}
         <Container>
           <Grid
             container
@@ -133,13 +133,15 @@ function ObservationDetail({ match }) {
                     </Typography>
                     <Typography color="textSecondary">
                       Date:{" "}
+                      
                       <Moment format="D MMMM YYYY">
                         <span style={{ fontStyle: "normal" }}>
-                          {!!(item._validation_status.timestamp * 1000)
-                            ? item._validation_status.timestamp * 1000
+                          {!!(item._submission_time)
+                            ? item._submission_time
                             : " unknown"}
                         </span>
                       </Moment>
+                  
                     </Typography>
                   </CardContent>
                 </CardActionArea>
